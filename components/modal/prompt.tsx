@@ -18,7 +18,9 @@ export default function prompt(
 
   const prefixCls = 'am-modal';
 
-  let data: any = {};
+  let data: any = {
+    [type]: defaultValue,
+  };
 
   function onChange(e) {
     const target = e.target;
@@ -123,12 +125,12 @@ export default function prompt(
   }
 
   function getArgs(func) {
-    const text = data.text || defaultValue || '';
+    const text = data.text || '';
     const password = data.password || '';
     if (type === 'login-password') {
       return func(text, password);
     } else if (type === 'secure-text') {
-      return func(password || defaultValue);
+      return func(password);
     }
     return func(text);
   }
